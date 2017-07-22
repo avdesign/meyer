@@ -783,7 +783,8 @@
                     </div>
                     <!--// End Changed listings-->
 
-                    @include('frontend.categories.filters.filter-3')
+                    <!-- frontend.categories.filters.filter-3 -->
+
 
                     <script type="text/javascript">
                         <!--

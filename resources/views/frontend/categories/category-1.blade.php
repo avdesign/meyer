@@ -59,7 +59,8 @@
 
                     @include('frontend.popups.groups-1')
 
-                    @include('frontend.categories.filters.filter-2')  
+                    <!-- frontend.categories.filters.filter-2 -->
+
 
                     <!--Changed Listings-->
                     <div class="products-list row grid">
@@ -791,7 +792,7 @@
                     </div>
                     <!--// End Changed listings-->
 
-                    @include('frontend.categories.filters.filter-3')
+                    <!-- frontend.categories.filters.filter-2 -->
 
                     <script type="text/javascript">
                         <!--

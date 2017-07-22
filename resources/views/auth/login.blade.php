@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="well col-sm-12">
-                            <h2>Já sou Clienter</h2>
+                            <h2>Já sou Cliente</h2>
                             <p><strong>Entre com seus dados abaixo:</strong></p>
                             <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}

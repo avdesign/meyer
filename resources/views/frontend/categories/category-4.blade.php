@@ -45,7 +45,7 @@
 
                 <div class="products-category">
 
-                     @include('frontend.categories.filters.filter-2')
+                     <!-- frontend.categories.filters.filter-2 -->
 
                     <!--Changed Listings-->
                     <div class="products-category">
@@ -787,7 +787,7 @@
                         </div>
                     </div>
 
-                     @include('frontend.categories.filters.filter-3')
+                     <!-- frontend.categories.filters.filter-3 -->
 
                 </div>
             </div>
