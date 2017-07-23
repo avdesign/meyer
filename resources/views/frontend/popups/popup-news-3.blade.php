@@ -18,7 +18,7 @@
                             </div>
                         </form>
                         <label class="hidden-popup">
-                            <input type="checkbox" value="1" name="hidden-popup">
+                            <input type="checkbox" value="1" onchange="dontShowPopup();" name="hidden-popup">
                             <span class="inline">&nbsp;&nbsp;Não mostrar esta pop-up novamente</span>
                         </label>
                     </div>
