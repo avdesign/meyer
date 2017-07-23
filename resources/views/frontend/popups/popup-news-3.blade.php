@@ -32,6 +32,7 @@
 
 <script type="text/javascript">
     //$('#container-module-newletter').modal();
+    // Não aceito
 </script>
 
 <script>
