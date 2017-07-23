@@ -2143,7 +2143,7 @@ select:focus, form:focus, button:focus, textarea:focus, input:focus {
     -o-opacity: 1;
     opacity: 1;
     color: #fff;
-    background-color: #fff;
+    background-color: #ffaa01;
     border: 1px solid #fff;
     right: -16px;
     top: -13px;

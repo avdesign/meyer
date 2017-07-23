@@ -79,7 +79,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    //$('#so_popup_countdown').modal();
+    $('#so_popup_countdown').modal();
 </script>
 
 <script>
