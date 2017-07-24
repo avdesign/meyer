@@ -3265,6 +3265,8 @@ ul.breadcrumb {
     transition: all 0.2s ease-in-out 0s;
     visibility: visible;
     width: auto; }
+
+    
 /*========== So Popup Countdown ===========*/
 #so_popup_countdown .modal-header .close {
   font-size: 23px;

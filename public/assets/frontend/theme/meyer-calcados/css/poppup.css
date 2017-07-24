@@ -1,0 +1,111 @@
+
+/*========== So Popup Form Newsletter ===========*/
+
+#so_popup_newsletter_form .modal-header .close {
+  font-size: 23px;
+  right: 15px;
+  top: 33px; }
+
+#so_popup_newsletter_form .modal-footer #so_countdown_timer {
+  top: 65px; }
+
+@media (min-width: 1200px) {
+    #so_popup_newsletter_form.modal.in .modal-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: auto !important;
+      margin: 0 auto;
+      transition: none; } }
+  #so_popup_newsletter_form .modal-footer #so_countdown_timer {
+    /*width: 56px;
+     height: 56px;*/ }
+  #so_popup_newsletter_form .modal-footer #so_countdown_timer .time-item {
+    line-height: 18px;
+    padding-top: 8px; }
+
+#so_popup_newsletter_form .list-cates {
+  background: url(../../images/bg-popupc.jpg) no-repeat;
+  background-size: 100%; }
+  #so_popup_newsletter_form .list-cates ul {
+    width: 64%;
+    /*float: $right;
+     padding: side-values(40px 20px 0 0);*/
+    float: right;
+    padding: 40px 20px 0 0;
+    text-align: center; }
+  #so_popup_newsletter_form .list-cates ul li {
+    display: inline-block;
+    margin: 0 14px;
+    text-align: center; }
+  #so_popup_newsletter_form .list-cates ul li a {
+    font-size: 14px;
+    font-weight: 500; }
+    #so_popup_newsletter_form .list-cates ul li a .icon {
+      width: 87px;
+      height: 87px;
+      background-color: #f7e7de;
+      background-image: url(../../images/icon/css_sprites2.png);
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 10px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon1 {
+      background-position: -9px -9px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon2 {
+      background-position: -9px -219px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon3 {
+      background-position: -9px -429px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon4 {
+      background-position: -9px -639px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon5 {
+      background-position: -9px -849px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon6 {
+      background-position: -9px -1059px; }
+    #so_popup_newsletter_form .list-cates ul li a .icon.icon7 {
+      background-position: -9px -1269px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon {
+      background-color: #777777; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon1 {
+      background-position: -9px -114px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon2 {
+      background-position: -9px -324px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon3 {
+      background-position: -9px -534px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon4 {
+      background-position: -9px -744px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon5 {
+      background-position: -9px -954px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon6 {
+      background-position: -9px -1164px; }
+    #so_popup_newsletter_form .list-cates ul li a:hover .icon.icon7 {
+      background-position: -9px -1374px; }
+  #so_popup_newsletter_form .list-cates ul li.item5, #so_popup_newsletter_form .list-cates ul li.item6, #so_popup_newsletter_form .list-cates ul li.item7 {
+    margin-top: 25px; }
+  #so_popup_newsletter_form .list-cates .customer {
+    display: inline-block;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 25px;
+    padding: 12px 40px 12px 50%; }
+  #so_popup_newsletter_form .list-cates .customer a {
+    color: #777777; }
+  #so_popup_newsletter_form .list-cates .customer a:hover {
+    color: #ec3a01; }
+
+.hidden-popup-countdown {
+  overflow: visible; }
+  .hidden-popup-countdown #so_popup_newsletter_form {
+    display: none !important; }
+
+.hidden-popup-countdown .modal-backdrop {
+  display: none !important; }
+
+.hidden-popup-countdown.modal-open .modal-backdrop:first-child {
+  display: none !important; }
+
+.hidden-popup-countdown.modal-open .modal-backdrop {
+  display: block !important; }
