@@ -136,7 +136,10 @@
         <!-- MENU PARA IR PARA O TOPO PERSONALIZADO -->
         <div class="back-to-top"><i class="fa fa-angle-up"></i></div>
         <!-- POPUP -->
-        
+        @include('frontend.popups.popup-news-2')
+        <script>
+            //cart.load();
+        </script>
     </div>
 </body>
 </html>
