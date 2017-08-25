@@ -3,6 +3,7 @@
 namespace AVDPainel\Http\Controllers\Auth;
 
 use AVDPainel\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

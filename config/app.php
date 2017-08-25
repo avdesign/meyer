@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,11 @@ return [
         AVDPainel\Providers\EventServiceProvider::class,
         AVDPainel\Providers\RouteServiceProvider::class,
 
+        /*
+         * Image Manipulation
+         */
+        Intervention\Image\ImageServiceProvider::class,
+
     ],
 
     /*
@@ -225,6 +230,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Image Manipulation
+         */
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
