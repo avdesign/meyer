@@ -71,7 +71,8 @@ class ProductRepository implements ProductInterface
             26 => 'offer_cash',
             27 => 'sum_stock',
             28 => 'freight',
-            29 => 'results'
+            29 => 'prices',
+            30 => 'kit'
         );
   
         $totalData = $this->model->where('category_id',$id)->with(array(
@@ -153,8 +154,11 @@ class ProductRepository implements ProductInterface
         $video   = $configProduct->video;
         $stock   = $configProduct->stock;
         ($stock == 1 ? $sum_stock = '<li>Estoque: <strong> 0 </strong></li>' : $sum_stock = '');
+        $freight = '';
+        $prices  = '';
         $cost    = $configProduct->cost;
-        $path    = $configImage->path;        
+        $path    = $configImage->path;
+        $kit     = $configProduct->kit;        
         $data    = array();        
         if(!empty($query))
         {
@@ -190,11 +194,20 @@ class ProductRepository implements ProductInterface
 
                // Prices
                 foreach ($val->prices as $price) {
+                    $prices .= '<li><small class="tag">'.$price->profile.'</small> À Vista: '.round($price->price_percent, 2).'%<strong>&nbsp;&nbsp;'.
+                        setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>'.
+                        setReal($price->price_card).'</strong></li>';
+                    
+                    if ($val->offer == 1) {
+                        $prices .= '<li><small class="tag green-bg">'.
+                            $price->profile.'</small> Oferta à Vista: '.round($price->offer_percent, 2).'%<strong>&nbsp;&nbsp;'.
+                            setReal($price->offer_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>'.
+                            setReal($price->offer_card).'</strong></li>';
+                    }
                     $price_cash = $price->price_cash;
                     $price_card = $price->price_card;
                     $offer_cash = $price->offer_cash;
                     $offer_card = $price->offer_card;
-                    $results['price_cash']  = $price->price_cash;
                 }
 
                 // Visits
@@ -235,17 +248,19 @@ class ProductRepository implements ProductInterface
                 $black_friday  = '<p id="black_friday-'.$val->id.'"><button type="button" onclick="'.$clickBlackfriday.'" class="button compact '.$color_black_friday.'</button></p>';
                 // Freight.
                 if ($default == 1) {
-                    $freight  = '<li>Peso: <strong> '.$val->weight.' Kg </strong></li>';
-                    ($height == 1 ? $freight .= '<li>Altura: <strong> '.$val->height.' cm </strong></li>' : '');
-                    ($width == 1 ? $freight .= '<li>Largura: <strong> '.$val->$width.' cm </strong></li>' : '');
-                    ($length == 1 ? $freight .= '<li>Comprimento: <strong> '.$val->length.' cm </strong></li>' : '');
-                } else {
-                    $freight = '';
+                    $freight  .= '<li>Peso: <strong> '.$val->weight.' Kg </strong></li>';
+                    ($height == 1 && $val->height != '' ? $freight .= '<li>Altura: <strong> '.$val->height.' cm </strong></li>' : '');
+                    ($width == 1 && $val->width != '' ? $freight .= '<li>Largura: <strong> '.$val->$width.' cm </strong></li>' : '');
+                    ($length == 1 && $val->length != '' ? $freight .= '<li>Comprimento: <strong> '.$val->length.' cm </strong></li>' : '');
                 }
+
                 // Cost
                 ($cost == 1 ? $cost = '<li>Custo: <strong> '.setReal($val->cost).' </strong></li>' : $cost = '');
                 // Video
                 ($video == 1 ? $video = '<li>Video: <strong> '.$val->video.' </strong></li>' : $video = '');
+
+                // Video
+                ($kit == 1 ? $kit = '<li>Kit: <strong> '.$val->kit_name.' </strong></li>' : $kit = '');
 
                 $nData['image']       = $image;
                 $nData['visits']      = [0 => $visits];
@@ -275,7 +290,8 @@ class ProductRepository implements ProductInterface
                                         'Em Oferta: <strong>'.setReal($offer_cash).'</strong>' : '');
                 $nData['sum_stock']   = $sum_stock;
                 $nData['freight']     = $freight;
-                $nData['results']     = $results;
+                $nData['prices']      = $prices;
+                $nData['kit']         = $kit;
 
                 $data[] = $nData;
                 

@@ -53,7 +53,7 @@ class SectionRepository implements SectionInterface
      */
     public function get()
     {
-        $data  = $this->model->get();
+        $data  = $this->model->orderBy('order', 'asc')->get();
         return $data;    
     }
 

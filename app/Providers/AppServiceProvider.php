@@ -31,7 +31,6 @@ class AppServiceProvider extends ServiceProvider
         $models = array(
             'ConfigKit',
             'ConfigBrand',
-            'ConfigPrice',
             'ConfigModule',
             'ConfigSystem',
             'ConfigProfile',
@@ -46,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
             'ConfigPermission',
             'ConfigUnitMeasure',
             'ConfigImageProduct',
+            'ConfigProfileClient',
             'AdminPermission',
             'AdminAccess',
             'Admin',

@@ -13,151 +13,217 @@
 						<input name="_method" type="hidden" value="PUT">
 						{{csrf_field()}}
 					    <legend class="legend">Padrão dos produtos</legend>
+
+						<p class="button-height inline-label">
+							<label for="price_profile" class="label">Preço do Perfil</label>
+							<span class="button-group">
+								<label for="price_profile-1" class="button green-active">
+									<input type="radio" name="price_profile" id="price_profile-1" value="1" {{{ $data->price_profile == 1 ? 'checked' : '' }}}>
+									Sim
+								</label>
+								<label for="price_profile-0" class="button red-active" >
+									<input type="radio" name="price_profile" id="price_profile-0" value="0" {{{ $data->price_profile == 0 ? 'checked' : '' }}}>
+									Não
+								</label>
+							</span>
+						</p>
 						<p class="button-height inline-label">
 							<label for="cost" class="label">Valor Custo</label>
 							<span class="button-group">
-								<label for="radio-0" class="button green-active">
-									<input type="radio" name="cost" id="radio-0" value="1" {{{ $data->cost == 1 ? 'checked' : '' }}}>
+								<label for="cost-1" class="button green-active">
+									<input type="radio" name="cost" id="cost-1" value="1" {{{ $data->cost == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-1" class="button red-active" >
-									<input type="radio" name="cost" id="radio-1" value="0" {{{ $data->cost == 0 ? 'checked' : '' }}}>
+								<label for="cost-0" class="button red-active" >
+									<input type="radio" name="cost" id="cost-0" value="0" {{{ $data->cost == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="stock" class="label">Estoque</label>
 							<span class="button-group">
-								<label for="radio-2" class="button green-active">
-									<input type="radio" name="stock" id="radio-2" value="1" {{{ $data->stock == 1 ? 'checked' : '' }}}>
+								<label for="stock-1" class="button green-active">
+									<input type="radio" name="stock" id="stock-1" value="1" {{{ $data->stock == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-3" class="button red-active" >
-									<input type="radio" name="stock" id="radio-3" value="0" {{{ $data->stock == 0 ? 'checked' : '' }}}>
+								<label for="stock-0" class="button red-active" >
+									<input type="radio" name="stock" id="stock-0" value="0" {{{ $data->stock == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="freight" class="label">Frete</label>
 							<span class="button-group">
-								<label for="radio-4" class="button green-active">
-									<input type="radio" name="freight" id="radio-4" value="1" {{{ $data->freight == 1 ? 'checked' : '' }}}>
+								<label for="freight-1" class="button green-active">
+									<input type="radio" name="freight" id="freight-1" value="1" {{{ $data->freight == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-5" class="button red-active" >
-									<input type="radio" name="freight" id="radio-5" value="0" {{{ $data->freight == 0 ? 'checked' : '' }}}>
+								<label for="freight-0" class="button red-active" >
+									<input type="radio" name="freight" id="freight-0" value="0" {{{ $data->freight == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="kit" class="label">Vender Kits</label>
 							<span class="button-group">
-								<label for="radio-6" class="button green-active">
-									<input type="radio" name="kit" id="radio-6" value="1" {{{ $data->kit == 1 ? 'checked' : '' }}}>
+								<label for="kit-1" class="button green-active">
+									<input type="radio" name="kit" id="kit-1" value="1" {{{ $data->kit == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-7" class="button red-active" >
-									<input type="radio" name="kit" id="radio-7" value="0" {{{ $data->kit == 0 ? 'checked' : '' }}}>
+								<label for="kit-0" class="button red-active" >
+									<input type="radio" name="kit" id="kit-0" value="0" {{{ $data->kit == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="grids" class="label">Grades</label>
 							<span class="button-group">
-								<label for="radio-8" class="button green-active">
-									<input type="radio" name="grids" id="radio-8" value="1" {{{ $data->grids == 1 ? 'checked' : '' }}}>
+								<label for="grids-1" class="button green-active">
+									<input type="radio" name="grids" id="grids-1" value="1" {{{ $data->grids == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-9" class="button red-active" >
-									<input type="radio" name="grids" id="radio-9" value="0" {{{ $data->grids == 0 ? 'checked' : '' }}}>
+								<label for="grids-0" class="button red-active" >
+									<input type="radio" name="grids" id="grids-0" value="0" {{{ $data->grids == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="colors" class="label">Fotos: Cores</label>
 							<span class="button-group">
-								<label for="radio-10" class="button green-active">
-									<input type="radio" name="colors" id="radio-10" value="1" {{{ $data->colors == 1 ? 'checked' : '' }}}>
+								<label for="colors-1" class="button green-active">
+									<input type="radio" name="colors" id="colors-1" value="1" {{{ $data->colors == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-11" class="button red-active" >
-									<input type="radio" name="colors" id="radio-11" value="0" {{{ $data->colors == 0 ? 'checked' : '' }}}>
+								<label for="colors-0" class="button red-active" >
+									<input type="radio" name="colors" id="colors-0" value="0" {{{ $data->colors == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="positions" class="label">Fotos: Posições</label>
 							<span class="button-group">
-								<label for="radio-12" class="button green-active">
-									<input type="radio" name="positions" id="radio-12" value="1" {{{ $data->positions == 1 ? 'checked' : '' }}}>
+								<label for="positions-1" class="button green-active">
+									<input type="radio" name="positions" id="positions-1" value="1" {{{ $data->positions == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-13" class="button red-active" >
-									<input type="radio" name="positions" id="radio-13" value="0" {{{ $data->positions == 0 ? 'checked' : '' }}}>
+								<label for="positions-0" class="button red-active" >
+									<input type="radio" name="positions" id="positions-0" value="0" {{{ $data->positions == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="group_colors" class="label">Grupo de Cores</label>
 							<span class="button-group">
-								<label for="radio-14" class="button green-active">
-									<input type="radio" name="group_colors" id="radio-14" value="1" {{{ $data->group_colors == 1 ? 'checked' : '' }}}>
+								<label for="group_colors-1" class="button green-active">
+									<input type="radio" name="group_colors" id="group_colors-1" value="1" {{{ $data->group_colors == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-15" class="button red-active" >
-									<input type="radio" name="group_colors" id="radio-15" value="0" {{{ $data->group_colors == 0 ? 'checked' : '' }}}>
+								<label for="group_colors-0" class="button red-active" >
+									<input type="radio" name="group_colors" id="group_colors-0" value="0" {{{ $data->group_colors == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
+						<p class="button-height inline-label">
+							<label for="reviews" class="label">Comentários</label>
+							<span class="button-group">
+								<label for="reviews-1" class="button green-active">
+									<input type="radio" name="reviews" id="reviews-1" value="1" {{{ $data->reviews == 1 ? 'checked' : '' }}}>
+									Sim
+								</label>
+								<label for="reviews-0" class="button red-active" >
+									<input type="radio" name="reviews" id="reviews-0" value="0" {{{ $data->reviews == 0 ? 'checked' : '' }}}>
+									Não
+								</label>
+							</span>
+						</p>
+						<p class="button-height inline-label">
+							<label for="quickview" class="label">Olhada Rápida</label>
+							<span class="button-group">
+								<label for="quickview-1" class="button green-active">
+									<input type="radio" name="quickview" id="quickview-1" value="1" {{{ $data->quickview == 1 ? 'checked' : '' }}}>
+									Sim
+								</label>
+								<label for="quickview-0" class="button red-active" >
+									<input type="radio" name="quickview" id="quickview-0" value="0" {{{ $data->quickview == 0 ? 'checked' : '' }}}>
+									Não
+								</label>
+							</span>
+						</p>
+						<p class="button-height inline-label">
+							<label for="wishlist" class="label">Lista de Desejo</label>
+							<span class="button-group">
+								<label for="wishlist-1" class="button green-active">
+									<input type="radio" name="wishlist" id="wishlist-1" value="1" {{{ $data->wishlist == 1 ? 'checked' : '' }}}>
+									Sim
+								</label>
+								<label for="wishlist-0" class="button red-active" >
+									<input type="radio" name="wishlist" id="wishlist-0" value="0" {{{ $data->wishlist == 0 ? 'checked' : '' }}}>
+									Não
+								</label>
+							</span>
+						</p>
+						<p class="button-height inline-label">
+							<label for="compare" class="label">Comparação</label>
+							<span class="button-group">
+								<label for="compare-1" class="button green-active">
+									<input type="radio" name="compare" id="compare-1" value="1" {{{ $data->compare == 1 ? 'checked' : '' }}}>
+									Sim
+								</label>
+								<label for="compare-0" class="button red-active" >
+									<input type="radio" name="compare" id="compare-0" value="0" {{{ $data->compare == 0 ? 'checked' : '' }}}>
+									Não
+								</label>
+							</span>
+						</p>
+						<p class="button-height inline-label">
+							<label for="countdown" class="label">Cronômetro</label>
+							<span class="button-group">
+								<label for="countdown-1" class="button green-active">
+									<input type="radio" name="countdown" id="countdown-1" value="1" {{{ $data->countdown == 1 ? 'checked' : '' }}}>
+									Sim
+								</label>
+								<label for="countdown-0" class="button red-active" >
+									<input type="radio" name="countdown" id="countdown-0" value="0" {{{ $data->countdown == 0 ? 'checked' : '' }}}>
+									Não
+								</label>
+							</span>
+						</p>
 						<p class="button-height inline-label">
 							<label for="video" class="label">Video</label>
 							<span class="button-group">
-								<label for="radio-16" class="button green-active">
-									<input type="radio" name="video" id="radio-16" value="1" {{{ $data->video == 1 ? 'checked' : '' }}}>
+								<label for="video-1" class="button green-active">
+									<input type="radio" name="video" id="video-1" value="1" {{{ $data->video == 1 ? 'checked' : '' }}}>
 									Sim
 								</label>
-								<label for="radio-17" class="button red-active" >
-									<input type="radio" name="video" id="radio-17" value="0" {{{ $data->video == 0 ? 'checked' : '' }}}>
+								<label for="video-0" class="button red-active" >
+									<input type="radio" name="video" id="video-0" value="0" {{{ $data->video == 0 ? 'checked' : '' }}}>
 									Não
 								</label>
 							</span>
 						</p>
-
 						<p class="button-height inline-label">
 							<label for="mini_colors" class="label">Miniaturas</label>
 							<select name="mini_colors" class="select check-list">
-								<option value="crop" {{{ $data->mini_colors == 'crop' ? 'selected="selected"' : '' }}}>Cortar Local</option>
-								<option value="hexa" {{{ $data->mini_colors == 'hexa' ? 'selected="selected"' : '' }}}>Código da cor</option>
-								<option value="thumbs" {{{ $data->mini_colors == 'thumbs' ? 'selected="selected"' : '' }}}>Miniatura da Foto</option>
+								<option value="crop" {{{ $data->mini_colors == 'crop' ? 'selected="selected"' : '' }}}>Crop</option>
+								<option value="hexa" {{{ $data->mini_colors == 'hexa' ? 'selected="selected"' : '' }}}>Picker</option>
+								<option value="thumbs" {{{ $data->mini_colors == 'thumbs' ? 'selected="selected"' : '' }}}>Miniatura</option>
 							</select>
 						</p>
-						@can('config-product-update')
-							<p class="button-height inline-label">
-								<button onclick="postFormJson($(this.form).attr('id'));" class="button icon-publish blue-gradient"> Salvar</button>
-							</p>
-						@endcan
 					</fieldset>
 
 				</div>
 				<div class="six-columns twelve-columns-tablet">
 					<h4 class="green underline">Observações</h4>
 					<ol>
+						<li>Preço do Perfil : Preço relacionado ao perfil do cliente.</li>
 						<li>Custo : Habilita  o campo para informar o custo do produto.</li>
 						<li>Estoque: Habilita  o modulo de controle de estoque.</li>
 						<li>Frete:  Habilita  o modulo de frete.</li>
@@ -166,9 +232,35 @@
 						<li>Fotos das Cores: Habilita  inserir cores dos produtos.</li>
 						<li>Fotos das Posições: Habilita  inserir fotos de posições.</li>
 						<li>Grupo de Cores: Habilita  o modulo de grupo de cores.</li>
+						<li>
+							Comentários: Possibilita que o cliente logado faça comentáros sobre o produto.<br>
+							- O comentário só será publicado após permissão do administrador do sistema.
+						</li>
+						<li>Olhada Rápida: Permite que o visitante tenha uma visão rápida dos produtos.</li>
+						<li>Lista de Desejo: Possibilita que o cliente logado adicione um produto em sua lista de desejos.<br>
+							<small class="tag red-bg">Em desenvolvimento</small>
+						</li>
+						<li>Comparação: Possibilita que o visitante faça uma comparação do produto.<br>
+							<small class="tag red-bg">Em desenvolvimento</small>
+						</li>
+						<li>
+							Cronômetro: Cronômetro regressivo para os produtos em ofertas.<br>
+							- Se o produto estiver em oferta, coloque o número de dias para a contagem regressiva.
+							- O produto será desabilitado como oferta automaticamente.
+						</li>
 						<li>Video: Habilita  o campo para informar o link do video.</li>
-						<li>Miniaturas: Opção do tipo das imagens em miniaturas.</li>
+						<li>
+							Miniaturas: Opção do tipo das imagens em miniaturas.<br>
+							- Crop: Recortar parte da foto.<br>
+							- Picker: Selecionar cor predominante.<br>
+							- Miniatura: Foto em miniatura.
+						</li>
 					</ol>
+					@can('config-product-update')
+						<p class="button-height inline-label">
+							<button onclick="postFormJson($(this.form).attr('id'));" class="button icon-publish blue-gradient"> Salvar</button>
+						</p>
+					@endcan
 				</div>
 			</div>
 		</form>

@@ -4,6 +4,7 @@ namespace AVDPainel\Http\Controllers\Admin;
 
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as InterModel;
+
 use AVDPainel\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -22,9 +23,9 @@ class ConfigProductController extends Controller
     {
         $this->middleware('auth:admin');
 
-        $this->access     = $access;
-        $this->interModel = $interModel;
-        $this->last_url   = array("last_url" => "config/produtos");
+        $this->access      = $access;
+        $this->interModel  = $interModel;
+        $this->last_url    = array("last_url" => "config/produtos");
     }
 
 
@@ -42,8 +43,9 @@ class ConfigProductController extends Controller
 
         $this->access->update($this->last_url);
         
-        $data  = $this->interModel->setId($id);
-        $title = 'Configuração dos Produtos';
+        $data        = $this->interModel->setId($id);
+        $title       = 'Configuração dos Produtos';
+
         return view("{$this->view}.form", compact('data', 'title'));    
     }
 
@@ -63,6 +65,7 @@ class ConfigProductController extends Controller
 
         $dataForm   = $request->all();
         $update = $this->interModel->update($dataForm, $id);
+
         if( $update ) {
             $success = true;
             $message = 'A configuração foi alterada.';

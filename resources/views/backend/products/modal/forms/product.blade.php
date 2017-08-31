@@ -287,10 +287,16 @@
                                     <label for="profile-{{$price->id}}" class="button blue-gradient">{{$price->profile}}</label>
                                     <span class="number input margin-right">
                                         <button type="button" class="button number-down">-</button>
-                                        <input type="text" name="price[{{$price->id}}][price_percent]"  value="{{$price->price_percent}}" size="4" class="input-unstyled" data-number-options='{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>
+                                    <input type="text" name="price[{{$price->id}}][price_card_percent]"  value="{{$price->percent_card}}" size="4" class="input-unstyled" data-number-options='{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>
                                         <button type="button" class="button number-up">+</button>
                                     </span>
                                     <input type="text" name="price[{{$price->id}}][price_card]" id="price_card_{{$price->id}}" class="input-unstyled input-sep" placeholder="À Prazo" value="{{$price->price_card}}" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 50px;">
+                                    <span class="number input margin-right">
+                                        <button type="button" class="button number-down">-</button>
+                                        <input type="text" name="price[{{$price->id}}][price_card_percent]"  value="{{$price->price_percent}}" size="4" class="input-unstyled" data-number-options='{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>
+                                        <button type="button" class="button number-up">+</button>
+                                    </span>
+
                                     <input type="text" name="price[{{$price->id}}][price_cash]" id="price_cash_{{$price->id}}" class="input-unstyled" placeholder="À Vista" value="{{$price->price_cash}}" style="width: 80px;">
                                     <a href="javascript:calculateCash('{{$price->id}}', 'price')" class="button compact">Calcular</a>
                                 </span>
@@ -301,23 +307,22 @@
                             </p>
                         @endforeach
                     @else
-                        @foreach($configPrice as $price)
-                            <p class="button-height">                                                            
-                                <span class="input">
-                                    <label for="profile-{{$price->id}}" class="button blue-gradient">{{$price->profile}}</label>
-                                    <span class="number input margin-right">
-                                        <button type="button" class="button number-down">-</button>
-                                        <input type="text" name="price[{{$price->id}}][price_percent]"  value="{{$price->percent}}" size="4" class="input-unstyled" data-number-options='{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>
-                                        <button type="button" class="button number-up">+</button>
-                                    </span>
-                                    <input type="text" name="price[{{$price->id}}][price_card]" id="price_card_{{$price->id}}" class="input-unstyled input-sep" placeholder="À Prazo" value="" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 50px;">
-                                    <input type="text" name="price[{{$price->id}}][price_cash]" id="price_cash_{{$price->id}}" class="input-unstyled" placeholder="À Vista" value="" style="width: 80px;">
-                                    <a href="javascript:calculateCash('{{$price->id}}', 'price')" class="button compact">Calcular</a>
-                                </span>
-                                <input type="hidden" name="price[{{$price->id}}][config_price_id]" value="{{$price->id}}">
-                                <input type="hidden" name="price[{{$price->id}}][profile]" value="{{$price->profile}}">
-                            </p>
-                        @endforeach
+                        <p class="button-height">                                                            
+                            <span class="input">
+                                <label for="price_regular" class="button blue-gradient">Preço %</label>
+                                <select id="price_regular_percent" name="price[0][price_regular_percent]" class="select compact" style="width:50px">
+                                @foreach($percentage as $key => $val)
+                                    <option value="{{$val}}">{{$val}}</option>
+                                @endforeach
+                                </select>                                
+                                <input type="text" name="price[0][price_regular_card]"   class="input-unstyled input-sep" placeholder="Parcelado" value="" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 60px;">
+                                <input type="text" name="price[0][price_regular_cash]" class="input-unstyled" placeholder="À Vista" value="" style="width: 80px;">
+                                <a id="get_prices" href="javascript:get_prices('{{route('profile.client.get.prices')}}')" class="button compact">Calcular</a>
+                            </span>
+                        </p>
+
+                        <div id="load_prices" class="align-center"></div>
+
                     @endif
                        
                     <p class="button-height inline-label">

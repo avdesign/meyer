@@ -11,16 +11,16 @@
             @if($configProduct->stock == 1)
                 <li>Estoque: <strong> {{$stock}} </strong></li>
             @endif
-            <li>Unidade Medida: <strong> {{$data->measure}} {{$data->unit}}</strong></li>
-            <li>
-                À vista: <strong> {{setReal($data->price_cash)}}  </strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                Em oferta: <strong> {{setReal($data->offer_cash)}} </strong>
-            </li>
-            <li>
-                À prazo: <strong> {{setReal($data->price_card)}}  </strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                Em oferta: <strong> {{setReal($data->offer_card)}} </strong>
-            </li>
-            <li>Desconto: <strong> {{$data->percent}}%</strong></li>
+            @if($configProduct->kit == 1)
+                <li>Kit: <strong>  {{$data->kit_name}}</strong></li>
+            @endif
+            <li>Unidade Medida: <strong>  {{$data->unit}} {{$data->measure}}</strong></li>
+
+            @foreach($prices as $price)
+                <li><small class="tag">{{$price->profile}}</small> À Vista: {{round($price->price_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->price_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>{{setReal($price->price_card)}}</strong></li>
+                <li><small class="tag green-bg">{{$price->profile}}</small> Oferta à Vista: {{round($price->offer_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->offer_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>{{setReal($price->offer_card)}}</strong></li>               
+            @endforeach
+
             @if($configProduct->freight == 1)
                 @if($configFreight->weight == 1)
                     <li>Peso: <strong> {{$data->weight}} Kg</strong></li>

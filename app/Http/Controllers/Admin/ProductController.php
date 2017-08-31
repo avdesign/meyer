@@ -13,12 +13,12 @@ use AVDPainel\Interfaces\Admin\ConfigKitInterface as ConfigKit;
 use AVDPainel\Interfaces\Admin\SectionInterface as InterSection;
 use AVDPainel\Interfaces\Admin\CategoryInterface as InterCategory;
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
-use AVDPainel\Interfaces\Admin\ConfigPriceInterface as ConfigPrice;
 use AVDPainel\Interfaces\Admin\ProductPriceInterface as ProductPrice;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
 use AVDPainel\Interfaces\Admin\ConfigPercentInterface as ConfigPercent;
+use AVDPainel\Interfaces\Admin\ConfigProfileClientInterface as ConfigPrice;
 use AVDPainel\Interfaces\Admin\ConfigUnitMeasureInterface as ConfigUnitMeasure;
 use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImageProduct;
 
@@ -170,7 +170,6 @@ class ProductController extends Controller
             'brands',
             'freight',
             'category',
-            'percentage',
             'percentage',
             'configPrice',
             'unit_measure',
@@ -391,7 +390,8 @@ class ProductController extends Controller
         }
 
         $data = $this->interModel->setId($id);
-        $stock = 0;
+        $prices = $data->prices;
+        $stock  = $data->grids()->sum('stock');
         $configProduct = $this->configProduct->setId(1);
         $configFreight = $this->configFreight->setId(1);
 
@@ -400,9 +400,9 @@ class ProductController extends Controller
             'data',
             'configProduct',
             'configFreight',
-            'stock')
+            'stock',
+            'prices')
         );
-
     }
 
     /**
@@ -447,9 +447,6 @@ class ProductController extends Controller
         } else {
             return view('backend.products.modal.forms.grids-create', compact('grids','module','idpro','stock'));
         }
-
-
-
     }
 
     /**

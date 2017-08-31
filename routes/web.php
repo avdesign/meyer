@@ -68,26 +68,26 @@ Route::group(['prefix' => 'painel'], function () {
 | Configurações do sistema
 |--------------------------------------------------------------------------
 */
-	// Porcentagens sobre os produtos.
+	//Config Group Colors.
 	Route::resource('config/grupo-cores', 'Admin\ConfigColorGroupController');
 
-	// Porcentagens sobre os produtos.
+	// Config images products.
 	Route::post('config/images/data', 'Admin\ConfigImageProductController@data')->name('config.images.data');
 	Route::resource('config/images', 'Admin\ConfigImageProductController');
 
-	// Padrão das imagens das categorias
+	// Config images categories.
 	Route::get('config/imagens/categorias', 'Admin\ConfigCategoryController@edit');
 	Route::put('config/imagens/{id}/categorias', 'Admin\ConfigCategoryController@update')->name('config.category.update');
 
-	// Padrão das imagens das seções
+	// Config images sections.
 	Route::get('config/imagens/secoes', 'Admin\ConfigSectionController@edit');
 	Route::put('config/imagens/{id}/secoes', 'Admin\ConfigSectionController@update')->name('config.section.update');
 
-	// Padrão das imagens das marcas ou fabricantes.
+	// Config images brands.
 	Route::get('config/imagens/fabricantes', 'Admin\ConfigBrandController@edit');
 	Route::put('config/imagens/{id}/fabricantes', 'Admin\ConfigBrandController@update')->name('config.brand.update');
 
-	// Unidade de Medidas.
+	// Config Unit Measure.
 	Route::post('config/unidades/data', 'Admin\ConfigUnitMeasureController@data')->name('measures.data');
 	Route::resource('config/unidades', 'Admin\ConfigUnitMeasureController');
 
@@ -103,9 +103,10 @@ Route::group(['prefix' => 'painel'], function () {
 	Route::post('config/porcentagens/data', 'Admin\ConfigPercentController@data')->name('percent.data');
 	Route::resource('config/porcentagens', 'Admin\ConfigPercentController');
 	
-	// Precos por perfil do cliente.
-	Route::post('config/precos/data', 'Admin\ConfigPriceController@data')->name('prices.data');
-	Route::resource('config/precos', 'Admin\ConfigPriceController');
+	// Perfil e porcentagens de preços do cliente.
+	Route::resource('config/perfil-cliente', 'Admin\ConfigProfileClientController');
+	Route::post('config/perfil-cliente/data', 'Admin\ConfigProfileClientController@data')->name('profile.client.data');
+	Route::post('perfil-cliente/prices', 'Admin\ConfigProfileClientController@prices')->name('profile.client.get.prices');
 
 	// Palavras chaves (keywords).
 	Route::post('config/keywords/data', 'Admin\ConfigKeywordsController@data')->name('keywords.data');
@@ -206,10 +207,10 @@ Route::group(['prefix' => 'painel'], function () {
 
 /*
 |--------------------------------------------------------------------------
-| Site Routes
+| Routes Site
 |--------------------------------------------------------------------------
 */
-Route::get('/', 'Site\HomeController@index')->name('home');
+Route::get('/', 'Site\HomeController@index')->name('site.home');
 
 /*
 |--------------------------------------------------------------------------

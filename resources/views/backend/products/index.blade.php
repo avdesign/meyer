@@ -127,23 +127,11 @@
                         <li>Tags: <strong> @{{{tags}}} </strong></li>
                         @{{{cost}}}
                         @{{{sum_stock}}}
-                        <li>Unidade Medida: <strong> @{{{measure}}}  @{{{unit}}}</strong></li>
-                        <li>
-                            À vista: <strong> @{{{price_cash}}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                            @{{{offer_cash}}}
-                        </li>
-                        <li>
-                            À prazo: <strong> @{{{price_card}}} </strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                            @{{{offer_card}}}
-                        </li>
-                        <li>Desconto: <strong> @{{{percent}}} %</strong></li>
+                        @{{{kit}}}
+                        <li>Unidade Medida: <strong>  @{{{unit}}} @{{{measure}}} </strong></li>
+                        @{{{prices}}}
                         @{{{freight}}}
                         @{{{video}}}
-                        <ul>
-                        @{{{#each results}}}
-                           <li>@{{{this.price_cash}}}</li>
-                        @{{{/each}}}
-                        </ul>
                     </ul>
                 </div>
             </div>

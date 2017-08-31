@@ -8,14 +8,20 @@ class ConfigProduct extends Model
 {
 	
 	protected $fillable = [
+	    'price_profile',
 	    'cost',
 	    'stock',
 	    'freight',
 	    'kit',
-	    'colors',
-	   	'group_colors',
+	   	'colors',
+	    'group_colors',
 	    'positions',
 	    'grids',
+	    'reviews',
+	    'quickview',
+	    'wishlist',
+	    'compare',
+	    'countdown',
 	    'video',
 	    'mini_colors'
 	];

@@ -145,9 +145,9 @@
 					@endcan
 					@can('config-price-view')
 						<li>
-							<a href="config/precos" class="file-link">
+							<a href="config/perfil-cliente" class="file-link">
 								<span class="icon folder-program"></span>
-								Editar porcentagem por perfil
+								Perfil do Cliente
 							</a>
 						</li>
 					@endcan

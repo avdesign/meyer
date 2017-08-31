@@ -15,6 +15,7 @@ class CreateConfigProductsTable extends Migration
     {
         Schema::create('config_products', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('price_profile');
             $table->tinyInteger('cost');
             $table->tinyInteger('stock');
             $table->tinyInteger('freight');
@@ -23,6 +24,11 @@ class CreateConfigProductsTable extends Migration
             $table->tinyInteger('group_colors');
             $table->tinyInteger('positions');
             $table->tinyInteger('grids');
+            $table->tinyInteger('reviews');
+            $table->tinyInteger('quickview');
+            $table->tinyInteger('wishlist');            
+            $table->tinyInteger('compare');
+            $table->tinyInteger('countdown');
             $table->tinyInteger('video');
             $table->string('mini_colors', 10);
             $table->timestamps();

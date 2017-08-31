@@ -121,6 +121,9 @@
                     if(data.success == true){
                         setBtn(2,tableProduct.txtNext,true,'icon-forward','submit-product','btn-product');     
                         if (ac == 'create') {
+
+                            $('input[name="prod[name]"]').val('');
+
                             var count_product = $("#count_product").html(),
                                 total_product = parseFloat(count_product)+1;
                                 $("#count_product").html(total_product);
@@ -186,6 +189,66 @@
 
             return false;
         };
+
+        get_prices = function(url)
+        {
+            var percent    = $("#price_regular_percent").val()/100;
+            var price_card = $("input[name='price[0][price_regular_card]']").val();
+            var descont    = percent*price_card;
+            var price_cash = price_card-descont;
+            var value      = new Number(price_cash);
+            var total      = value.toFixed(2);
+            $("input[name='price[0][price_regular_cash]']").val(total);
+
+            var html;
+            $.ajax({
+                beforeSend: function(){
+                    $("#load_prices").html('<span class="loader"></span>');
+                },
+                type: 'POST',
+                dataType: "json",
+                headers: {'X-CSRF-TOKEN':tableProduct.token},
+                url: url,
+                success: function(data){
+                    if (data.success = true) {
+
+
+                        /*
+                        html += '<p class="button-height">';                                                            
+                            html += '<span class="input">';
+                                html += '<label for="profile-'+data.id+'" class="button blue-gradient">'+data.profile+'</label>';            
+                                html += '<span class="number input margin-right">';
+                                    html += '<button type="button" class="button number-down">-</button>';
+                                    html += '<input type="text" name="price['+data.id+'][price_card_percent]"  value="'+data.percent_card+'" size="2" class="input-unstyled" data-number-options=\'{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}\'>';
+                                    html += '<button type="button" class="button number-up">+</button>';
+                                html += '</span>';
+                                html += '<input type="text" name="price['+data.id+'][price_card]" id="price_card_'+data.id+'" class="input-unstyled input-sep" placeholder="À Prazo" value="" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 50px;">';
+                                html += '<span class="number input margin-right">';
+                                    html += '<button type="button" class="button number-down">-</button>';
+                                    html += '<input type="text" name="price['+data.id+'][price_cash_percent]"  value="'+data.percent_cash+'" size="2" class="input-unstyled" data-number-options=\'{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}\'>';
+                                    html += '<button type="button" class="button number-up">+</button>';
+                                html += '</span>';
+                                html += '<input type="text" name="price['+data.id+'][price_cash]" id="price_cash_'+data.id+'" class="input-unstyled" placeholder="À Vista" value="" style="width: 50px;">';
+                            html += '</span>';
+                            html += '<input type="hidden" name="price['+data.id+'][config_price_id]" value="'+data.id+'">';
+                            html += '<input type="hidden" name="price['+data.id+'][profile]" value="'+data.profile+'">';
+                        html += '</p>';
+                        */
+
+
+                    } else {
+                        $("#load_prices").html('');
+                        msgNotifica(false, data.message, true, false);
+                    }
+                },
+                error: function(xhr){
+                    $("#load_prices").html('');
+                    ajaxFormError(xhr);
+                }          
+            });
+        }
+
+
 
         /**
          * Update status fields.

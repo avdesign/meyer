@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigProductTableSeeder::class);
         $this->call(ConfigFreightsTableSeeder::class);
         $this->call(ConfigPercentTableSeeder::class);
-        $this->call(ConfigPriceTableSeeder::class);
+        $this->call(ConfigProfileClientTableSeeder::class);
         $this->call(ConfigShippingTableSeeder::class);
         $this->call(ConfigBrandTableSeeder::class);
         $this->call(ConfigUnitMeasureTableSeeder::class);
@@ -30,8 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigImageProductTableSeeder::class);
         $this->call(ConfigColorGroupTableSeeder::class);
         $this->call(StateTableSeeder::class);
-        $this->call(ProductTableSeeder::class);
-
-        
+        $this->call(ProductTableSeeder::class);        
     }
 }
