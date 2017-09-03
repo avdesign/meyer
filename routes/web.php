@@ -107,6 +107,7 @@ Route::group(['prefix' => 'painel'], function () {
 	Route::resource('config/perfil-cliente', 'Admin\ConfigProfileClientController');
 	Route::post('config/perfil-cliente/data', 'Admin\ConfigProfileClientController@data')->name('profile.client.data');
 	Route::post('perfil-cliente/prices', 'Admin\ConfigProfileClientController@prices')->name('profile.client.get.prices');
+	Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers')->name('profile.client.get.offers');
 
 	// Palavras chaves (keywords).
 	Route::post('config/keywords/data', 'Admin\ConfigKeywordsController@data')->name('keywords.data');

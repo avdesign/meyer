@@ -13,9 +13,15 @@
 						<input name="_method" type="hidden" value="PUT">
 						{{csrf_field()}}
 					    <legend class="legend">Padrão dos produtos</legend>
-
 						<p class="button-height inline-label">
-							<label for="price_profile" class="label">Preço do Perfil</label>
+							<label for="view_prices" class="label">Visualizar Preço</label>
+							<select name="view_prices" class="select check-list">
+								<option value="0" {{{ $data->view_prices == 0 ? 'selected="selected"' : '' }}}>Liberado</option>
+								<option value="1" {{{ $data->view_prices == 1 ? 'selected="selected"' : '' }}}>Logado</option>
+							</select>
+						</p>
+						<p class="button-height inline-label">
+							<label for="price_profile" class="label">Preço por Perfil</label>
 							<span class="button-group">
 								<label for="price_profile-1" class="button green-active">
 									<input type="radio" name="price_profile" id="price_profile-1" value="1" {{{ $data->price_profile == 1 ? 'checked' : '' }}}>
@@ -223,7 +229,10 @@
 				<div class="six-columns twelve-columns-tablet">
 					<h4 class="green underline">Observações</h4>
 					<ol>
-						<li>Preço do Perfil : Preço relacionado ao perfil do cliente.</li>
+						<li>
+							Preço do Perfil : Preço relacionado ao perfil do cliente.<br>
+							- O Preço normal é obrigatório.
+						</li>
 						<li>Custo : Habilita  o campo para informar o custo do produto.</li>
 						<li>Estoque: Habilita  o modulo de controle de estoque.</li>
 						<li>Frete:  Habilita  o modulo de frete.</li>

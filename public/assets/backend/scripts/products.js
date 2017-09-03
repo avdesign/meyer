@@ -190,64 +190,71 @@
             return false;
         };
 
-        get_prices = function(url)
+        get_prices = function(url, profiles)
         {
-            var percent    = $("#price_regular_percent").val()/100;
-            var price_card = $("input[name='price[0][price_regular_card]']").val();
-            var descont    = percent*price_card;
-            var price_cash = price_card-descont;
-            var value      = new Number(price_cash);
+            var percent = $("#price_card_percent_1").val()/100;
+            var card = $("input[name='price[1][price_card]']").val();
+            var descont = percent*card;
+            var cash = card-descont;
+            var value      = new Number(cash);
             var total      = value.toFixed(2);
-            $("input[name='price[0][price_regular_cash]']").val(total);
-
-            var html;
-            $.ajax({
-                beforeSend: function(){
-                    $("#load_prices").html('<span class="loader"></span>');
-                },
-                type: 'POST',
-                dataType: "json",
-                headers: {'X-CSRF-TOKEN':tableProduct.token},
-                url: url,
-                success: function(data){
-                    if (data.success = true) {
-
-
-                        /*
-                        html += '<p class="button-height">';                                                            
-                            html += '<span class="input">';
-                                html += '<label for="profile-'+data.id+'" class="button blue-gradient">'+data.profile+'</label>';            
-                                html += '<span class="number input margin-right">';
-                                    html += '<button type="button" class="button number-down">-</button>';
-                                    html += '<input type="text" name="price['+data.id+'][price_card_percent]"  value="'+data.percent_card+'" size="2" class="input-unstyled" data-number-options=\'{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}\'>';
-                                    html += '<button type="button" class="button number-up">+</button>';
-                                html += '</span>';
-                                html += '<input type="text" name="price['+data.id+'][price_card]" id="price_card_'+data.id+'" class="input-unstyled input-sep" placeholder="À Prazo" value="" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 50px;">';
-                                html += '<span class="number input margin-right">';
-                                    html += '<button type="button" class="button number-down">-</button>';
-                                    html += '<input type="text" name="price['+data.id+'][price_cash_percent]"  value="'+data.percent_cash+'" size="2" class="input-unstyled" data-number-options=\'{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}\'>';
-                                    html += '<button type="button" class="button number-up">+</button>';
-                                html += '</span>';
-                                html += '<input type="text" name="price['+data.id+'][price_cash]" id="price_cash_'+data.id+'" class="input-unstyled" placeholder="À Vista" value="" style="width: 50px;">';
-                            html += '</span>';
-                            html += '<input type="hidden" name="price['+data.id+'][config_price_id]" value="'+data.id+'">';
-                            html += '<input type="hidden" name="price['+data.id+'][profile]" value="'+data.profile+'">';
-                        html += '</p>';
-                        */
-
-
-                    } else {
+            $("input[name='price[1][price_cash]']").val(total);
+            if (profiles == 1) {                
+                $.ajax({
+                    beforeSend: function(){
+                        $("#load_prices").html('<span class="loader"></span>');
+                    },
+                    type: 'POST',
+                    dataType: "html",
+                    url: url,
+                    data: {card:card, cash:total, _token:tableProduct.token},
+                    success: function(data){
+                        $("#load_prices").html(data);
+                    },
+                    error: function(xhr){
                         $("#load_prices").html('');
-                        msgNotifica(false, data.message, true, false);
-                    }
-                },
-                error: function(xhr){
-                    $("#load_prices").html('');
-                    ajaxFormError(xhr);
-                }          
-            });
+                        ajaxFormError(xhr);
+                    }          
+                });
+            };
         }
 
+        /**
+         * Habilitar valor oferta.
+         * View: produtos.modal.forms.produto
+         * @param int opc - (1 ou 0)
+         */
+        get_offers = function(url, opc, profiles)
+        {
+            
+            if (opc == 1) {
+                var percent = $("#price_card_percent_1").val();
+                $("#offer_percent_1").val(percent);
+                $("#normal_offer").show();
+            } else {
+                $("#normal_offer").hide();
+            };
+
+            if (profiles == 1) {
+                $.ajax({
+                    beforeSend: function(){
+                        $("#get_offers").html('<span class="loader"></span>');
+                    },
+                    type: 'POST',
+                    dataType: "html",
+                    url: url,
+                    data: {opc:opc, _token:tableProduct.token},
+                    success: function(data){
+                        $("#get_offers").html(data);                       
+                    },
+                    error: function(xhr){
+                        $("#get_offers").html('');
+                        ajaxFormError(xhr);
+                    }          
+                });
+            };
+
+        }
 
 
         /**
@@ -333,19 +340,11 @@
          * Calculate Cash.
          * View: products.modal.forms.product
          * @param int id  config_prices
-         * @param string opc - (price, offer)
+         * @param string opc - (price, offer, update)
          */
         calculateCash = function(id, opc) 
         {
-            if (opc == 'price') {
-                var percent    = $("input[name='price["+id+"][price_percent]']").val()/100;
-                var price_card = $("input[name='price["+id+"][price_card]']").val();
-                var descont    = percent*price_card;
-                var price_cash = price_card-descont;
-                var value      = new Number(price_cash);
-                var total      = value.toFixed(2);
-                $("input[name='price["+id+"][price_cash]']").val(total);
-            };
+
             if (opc == 'offer') {
                 var percent    = $("input[name='price["+id+"][offer_percent]']").val()/100;
                 var price_card = $("input[name='price["+id+"][offer_card]']").val();
@@ -354,6 +353,57 @@
                 var value      = new Number(price_cash);
                 var total      = value.toFixed(2);
                 $("input[name='price["+id+"][offer_cash]']").val(total);
+            };
+
+            if (opc == 'price') {
+
+                var percent = $("#price_card_percent_"+id).val()/100,
+                    card    = $("input[name='price["+id+"][price_card]']").val(),
+                    descont = percent*card,
+                    cash    = card-descont,
+                    value   = new Number(cash),
+                    total   = value.toFixed(2);
+                $("input[name='price["+id+"][price_cash]']").val(total);
+
+                var ids   = $("#ids_prices").val();
+                var array = ids.split(",");
+
+                $.each( array, function( i, v ) {
+                    var sum,
+                        price  = $("#price_card_"+id).val(),
+                        spcard = $("input[name='price["+v+"][price_card_percent]']").val(),
+                        spcash = $("input[name='price["+v+"][price_cash_percent]']").val();
+
+
+                    var pcard = spcard.replace("+", "").replace("-", ""),
+                        percent_card = pcard/100,
+                        percentage_card = percent_card*price;
+
+                    if (spcard >= 0) {
+                        var price_card = +price+percentage_card;
+                    } else {
+                        var price_card = price-percentage_card;
+                    }
+
+                    var value_card = new Number(price_card),
+                        total_card = value_card.toFixed(2);
+
+                    var pcash = spcash.replace("+", "").replace("-", ""),
+                        percent_cash = pcash/100,
+                        percentage_cash = percent_cash*price;
+
+                    if (spcash >= 0) {
+                        var price_cash = +price+percentage_cash;
+                    } else {
+                        var price_cash = price-percentage_cash;
+                    }
+
+                    var value_cash = new Number(price_cash),
+                        total_cash = value_cash.toFixed(2);
+
+                    $("#price_card_"+v).val(total_card);
+                    $("#price_cash_"+v).val(total_cash);
+                });
             };
         }
         

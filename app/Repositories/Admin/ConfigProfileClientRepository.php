@@ -44,7 +44,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
      */
     public function get()
     {
-        $data  = $this->model->get();
+        $data  = $this->model->where('status', 'Ativo')->get();
         return $data;    
     }
 
@@ -100,37 +100,37 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
         if(!empty($query))
         {
             foreach ($query as $val){
+                if ($val->profile != 'Normal') {
+                    if ($val->sum == '+') {
+                        $sum = '<span class="icon-squared-plus blue-gradient icon-size2" title="Mais"></span>';
+                    } else {
+                        $sum = '<span class="icon-squared-minus red-gradient icon-size2" title="Menos"></span>';
+                    }
 
-                if ($val->sum == '+') {
-                    $sum = '<span class="icon-squared-plus blue-gradient icon-size2" title="Mais"></span>';
-                } else {
-                    $sum = '<span class="icon-squared-minus red-gradient icon-size2" title="Menos"></span>';
+                    ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
+
+                    $edit   = "abreModal('Editar {$val->profile}', '".route('perfil-cliente.edit', ['id' => $val->id])."', 'profile-clients', 2, 'true', 380, 260)";
+                    $delete = "deleteProfileClient('".route('perfil-cliente.destroy', ['id' => $val->id])."', '{$val->profile}')";
+
+                    $nData['order']        = $val->order;
+                    $nData['profile']      = $val->profile;
+                    $nData['percent_card'] = round($val->percent_card, 2). '%';
+                    $nData['percent_cash'] = round($val->percent_cash, 2). '%';
+                    $nData['sum']          = $sum;
+                    $nData['status']       = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                    $nData['actions']      = '<span class="button-group">';
+                    if (Gate::allows('config-percent-delete')) {
+                        $nData['actions'] .= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
+                    }
+                    if (Gate::allows('config-profile-client-update')) {
+                        $nData['actions'] .= '<button onclick="'.$edit.'" class="button icon-pencil compact"></button>';
+                    }
+                    $nData['actions']     .= '</span>';
+                    $nData['updated_at']   = date('j M Y h:i:s',strtotime($val->created_at));
+                    $nData['created_at']   = date('j M Y h:i:s',strtotime($val->created_at));
+                    $nData['id']           = $val->id;
+                    $data[] = $nData;
                 }
-
-
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
-
-                $edit   = "abreModal('Editar {$val->profile}', '".route('perfil-cliente.edit', ['id' => $val->id])."', 'profile-clients', 2, 'true', 380, 260)";
-                $delete = "deleteProfileClient('".route('perfil-cliente.destroy', ['id' => $val->id])."', '{$val->profile}')";
-
-                $nData['order']        = $val->order;
-                $nData['profile']      = $val->profile;
-                $nData['percent_card'] = round($val->percent_card, 2). '%';
-                $nData['percent_cash'] = round($val->percent_cash, 2). '%';
-                $nData['sum']          = $sum;
-                $nData['status']       = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
-                $nData['actions']      = '<span class="button-group">';
-                if (Gate::allows('config-percent-delete')) {
-                    $nData['actions'] .= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
-                }
-                if (Gate::allows('config-profile-client-update')) {
-                    $nData['actions'] .= '<button onclick="'.$edit.'" class="button icon-pencil compact"></button>';
-                }
-                $nData['actions']     .= '</span>';
-                $nData['updated_at']   = date('j M Y h:i:s',strtotime($val->created_at));
-                $nData['created_at']   = date('j M Y h:i:s',strtotime($val->created_at));
-                $nData['id']           = $val->id;
-                $data[] = $nData;
             }
         }
           
@@ -268,8 +268,8 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 ' Removeu o perfil do Cliente:'.$data->profile.
-                ' Parcelado:'.$percent_card.
-                '% À Vísta:'.$percent_cash.
+                ' Parcelado:'.$data->percent_card.
+                '% À Vísta:'.$data->percent_cash.
                 '%, Ordem:'.$data->order.
                 ', Calculo para:'.$data->sum.
                 ', Status:'.$data->status)

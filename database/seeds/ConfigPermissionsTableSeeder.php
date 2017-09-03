@@ -821,7 +821,7 @@ class ConfigPermissionsTableSeeder extends Seeder
         /*|||||||||||||||||||||||||||||||||||||*/
         DB::table('config_permissions')->insert([
             'module_id' => 17,
-            'name' => 'config-price-view',
+            'name' => 'config-profile-client-view',
             'label' => 'Visualizar',
             'created_at' => $date
         ]);
@@ -834,7 +834,7 @@ class ConfigPermissionsTableSeeder extends Seeder
         /*|||||||||||||||||||||||||||||||||||||*/
         DB::table('config_permissions')->insert([
             'module_id' => 17,
-            'name' => 'config-price-create',
+            'name' => 'config-profile-client-create',
             'label' => 'Adicionar',
             'created_at' => $date
         ]);
@@ -847,7 +847,7 @@ class ConfigPermissionsTableSeeder extends Seeder
         /*|||||||||||||||||||||||||||||||||||||*/
         DB::table('config_permissions')->insert([
             'module_id' => 17,
-            'name' => 'config-price-update',
+            'name' => 'config-profile-client-update',
             'label' => 'Editar',
             'created_at' => $date
         ]);
@@ -860,7 +860,7 @@ class ConfigPermissionsTableSeeder extends Seeder
         /*|||||||||||||||||||||||||||||||||||||*/
         DB::table('config_permissions')->insert([
             'module_id' => 17,
-            'name' => 'config-price-delete',
+            'name' => 'config-profile-client-delete',
             'label' => 'Excluir',
             'created_at' => $date
         ]);
@@ -2489,11 +2489,11 @@ class ConfigPermissionsTableSeeder extends Seeder
     |     - config-kit-create
     |     - config-kit-update
     |     - config-kit-delete
-    | 17- Editar porcentagem por perfil
-    |     - config-price-view
-    |     - config-price-create
-    |     - config-price-update
-    |     - config-price-delete
+    | 17- Perfil do Cliente
+    |     - config-profile-client-view
+    |     - config-profile-client-create
+    |     - config-profile-client-update
+    |     - config-profile-client-delete
     | 18-29 RESERVADOS PARA CONFIGURAÇÃO
     | 30  - Permissões dos Usuários
     |     - model-users-view

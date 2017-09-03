@@ -40,39 +40,93 @@ class ProductRequest extends FormRequest
         $configProduct = $this->configProduct->setId(1);        
         $inputProduct  = $this->request->get('prod');
         $inputPrice    = $this->request->get('price');
-        $offer         = $inputProduct['offer'];  
+        $offer         = $inputProduct['offer'];
+
+        //dd($inputPrice);
 
         foreach($inputProduct as $key => $val) {
 
             if ($key == 'brand_id') {
-               $rules['prod.'.$key] = 'required|min:1';
+               $rules['prod.brand_id'] = 'required|min:1';
             }
             if ($key == 'section_id') {
-               $rules['prod.'.$key] = 'required';
+               $rules['prod.section_id'] = 'required';
             }
             if ($key == 'category_id') {
-               $rules['prod.'.$key] = 'required';
+               $rules['prod.category_id'] = 'required';
             }
             if($key == 'name'){
-               $rules['prod.'.$key] = 'required';
+               $rules['prod.name'] = 'required';
             }
         }
 
         foreach ($inputPrice as $key => $value) {
             foreach ($value as $k => $v) {
-                if($k == 'price_card' && $v == '' || $v == '0.00'){
-                   $rules[$k] = 'required';
-                }
-                if($k == 'price_cash' && $v == '' || $v == '0.00'){
-                   $rules[$k] = 'required';
-                }
-                if ($offer == 1) {
-                    if ($k == 'offer_cash' && $v == '' || $v == '0.00') {
-                         $rules[$k] = 'required';
+
+                $profile = $value['profile'];
+
+                if ($profile != 'Normal') {
+                    if ($k == 'config_price_id' && $v < 1) {
+                        $rules['price.'.$profile.'.config_price_id'] = 'required';
                     }
-                    if ($k == 'offer_card' && $v == '' || $v == '0.00') {
-                         $rules[$k] = 'required';
+                    if ($k == 'price_card_percent' && $v == '') {
+                        $rules['price.'.$profile.'.price_card_percent'] = 'required';
                     }
+                    if($k == 'price_card' && $v == '' || $v == '0.00'){
+                        $rules['price.'.$profile.'.price_card'] = 'required';
+                    }
+                    if($k == 'price_cash' && $v == '' || $v == '0.00'){
+                        $rules['price.'.$profile.'.price_cash'] = 'required';
+                    }
+                    if ($k == 'price_cash_percent' && $v == '') {
+                        $rules['price.'.$profile.'.price_cash_percent'] = 'required';
+                    }
+
+                    if ($offer == 1) {
+                        if ($k == 'offer_percent' && $v < 1) {
+                            $rules['price.'.$profile.'.offer_percent'] = 'required';
+                        }
+                        if ($k == 'offer_cash' && $v == '' || $v == '0.00') {
+                            $rules['price.'.$profile.'.offer_cash'] = 'required';
+                        }
+                        if ($k == 'offer_card' && $v == '' || $v == '0.00') {
+                            $rules['price.'.$profile.'.offer_card'] = 'required';
+                        }
+                    }
+
+                } else {
+
+                    $price_card         = $value['price_card'];
+                    $price_cash         = $value['price_cash'];
+                    $price_cash_percent = $value['price_cash_percent'];
+
+
+                    if ($price_cash_percent < 1) {
+                        $rules['price.'.$profile.'.price_cash_percent'] = 'required';
+                    }
+                    if($price_card == '' || $price_card == '0.00'){
+                        $rules['price.'.$profile.'.price_card'] = 'required';
+                    }
+                    if($price_cash == '' || $price_cash == '0.00'){
+                        $rules['price.'.$profile.'.price_cash'] = 'required';
+                    }
+                    if ($offer == 1) {
+
+                        $offer_card    = $value['offer_card'];
+                        $offer_cash    = $value['offer_cash'];
+                        $offer_percent = $value['offer_percent'];
+
+                        if ($offer_percent < 1) {
+                            $rules['price.'.$profile.'.offer_percent'] = 'required';
+                        }
+                        if ($offer_card == '' || $offer_card == '0.00') {
+                            $rules['price.'.$profile.'.offer_card'] = 'required';
+                        }
+                        if ($offer_cash == '' || $offer_cash == '0.00') {
+                            $rules['price.'.$profile.'.offer_cash'] = 'required';
+                        }
+                    }
+
                 }
             }
         }
@@ -83,7 +137,6 @@ class ProductRequest extends FormRequest
                 $rules['prod.cost'] = 'required';
             }
         }
-
 
         // Se cobrar frete validar os campos
         if (isset($inputProduct['freight'])) {
@@ -102,6 +155,8 @@ class ProductRequest extends FormRequest
                 }                 
             }
         }
+
+        //dd($rules);
 
         return $rules;
      
@@ -151,23 +206,31 @@ class ProductRequest extends FormRequest
         foreach ($inputPrice as $key => $value) {
             foreach ($value as $k => $v) {
 
+                $profile = $value['profile'];                
+
+                if ($k == 'price_card_percent') {
+                    $messages['price.'.$profile.'.price_card_percent.required'] = "A porcentagem {$profile} parcelado é obrigatória.";
+                }
                 if($k == 'price_card'){
-                    $msg = "Valor parcelado é obrigatório.";
+                    $messages['price.'.$profile.'.price_card.required'] = "Valor {$profile} parcelado é obrigatório.";
+                }
+                if ($k == 'price_cash_percent') {
+                    $messages['price.'.$profile.'.price_cash_percent.required'] = "A porcentagem {$profile} à vísta é obrigatória.";
                 }
                 if($k == 'price_cash'){
-                    $msg = "Valor á vista é obrigatório.";
+                    $messages['price.'.$profile.'.price_cash.required'] = "Valor {$profile} á vista é obrigatório.";
                 }
+                if ($k == 'offer_percent') {
+                    $messages['price.'.$profile.'.offer_percent.required'] = "A porcentagem {$profile} do valor da oferta é obrigatório.";
+                }                
                 if($k == 'offer_card'){
-                    $msg = "Valor em oferta à prazo é obrigatório.";
+                    $messages['price.'.$profile.'.offer_card.required'] = "Valor {$profile} em oferta à prazo é obrigatório.";
                 }
                 if($k == 'offer_cash'){
-                   $msg = "Valor em oferta à vista é obrigatório.";
+                    $messages['price.'.$profile.'.offer_cash.required'] = "Valor {$profile} em oferta à vista é obrigatório.";
                 }
-
-                $messages[$k.'.required'] = $msg;
             }
         }
-
 
         return $messages;
     }   

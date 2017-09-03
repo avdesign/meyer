@@ -17,10 +17,21 @@ class ConfigProfileClientTableSeeder extends Seeder
 
         ConfigProfileClient::create([
             'order' => '01',
+            'profile' => 'Normal',
+            'percent_cash' => 0,
+            'percent_card' => 0,
+            'sum' => '-',
+            'status' => 'Ativo',
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+
+        ConfigProfileClient::create([
+            'order' => '01',
             'profile' => 'Fisíca',
             'percent_cash' => 10,
             'percent_card' => 5,
-            'sum' => '-',
+            'sum' => '+',
             'status' => 'Ativo',
             'created_at' => $date,
             'updated_at' => $date
@@ -42,7 +53,7 @@ class ConfigProfileClientTableSeeder extends Seeder
             'profile' => 'Vip',
             'percent_cash' => 20,
             'percent_card' => 15,
-            'sum' => '-',
+            'sum' => '+',
             'status' => 'Ativo',
             'created_at' => $date,
             'updated_at' => $date

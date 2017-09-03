@@ -16,7 +16,7 @@ class CreateProductPricesTable extends Migration
         Schema::create('product_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->integer('config_profile_client_id')->unsigned();
+            $table->integer('config_profile_client_id');
             $table->string('profile', 30);
             $table->decimal('price_card',8, 2)->default(0);
             $table->decimal('price_cash',8, 2)->default(0);
@@ -24,16 +24,14 @@ class CreateProductPricesTable extends Migration
             $table->decimal('offer_cash',8, 2)->nullable();
             $table->decimal('price_cash_percent',8, 2)->nullable();
             $table->decimal('price_card_percent',8, 2)->nullable();
-            $table->decimal('offer_cash_percent',8, 2)->nullable();
-            $table->decimal('offer_card_percent',8, 2)->nullable();
+            $table->decimal('offer_percent',8, 2)->nullable();
+            $table->enum('sum_cash', ['+', '-']);
+            $table->enum('sum_card', ['+', '-']);
             $table->timestamps();
 
             $table->foreign('product_id')
                 ->references('id')->on('products')
                 ->onDelete('cascade');
-
-            $table->foreign('config_profile_client_id')
-                ->references('id')->on('config_profile_clients');
         });
     }
 

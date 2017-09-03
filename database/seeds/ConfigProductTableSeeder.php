@@ -14,6 +14,7 @@ class ConfigProductTableSeeder extends Seeder
     {
         $date = date('Y-m-d H:i:s');
         ConfigProduct::create([
+            'view_prices' => 0,
             'price_profile' => 1,
 	        'cost' => 0,
 	        'stock' => 0,

@@ -65,9 +65,21 @@ class ConfigProfileClientController extends AdminAjaxTablesController
 
     public function prices(Request $request)
     {
-        $data = $this->interModel->get();
+        $profiles   = $this->interModel->get();
+        $dataForm   = $request->all();
 
-        dd($data);
+        $price_card = $dataForm['card'];
+
+        return view("{$this->view}.prices", compact('profiles', 'price_card')); 
+    }
+
+    public function offers(Request $request)
+    {
+        if ($request['opc'] == 1) {
+            $profiles   = $this->interModel->get();
+
+            return view("{$this->view}.offers", compact('profiles')); 
+        }
     }
 
 

@@ -22,23 +22,40 @@ class ProductPriceRepository implements ProductPriceInterface
     }
 
     public function create($input, $idpro, $offer)
-    {
-        $text_offer = '';
+    {     
         $data = false;
+        $text_offer_card = '';
+        $text_offer_cash = '';
         foreach ($input as $key => $value) {
+
+            ($value['price_cash_percent'] < 0 ? $sum_cash = '-' : $sum_cash = '+');
+            ($value['price_card_percent'] < 0 ? $sum_card = '-' : $sum_card = '+');
+            
+            ($value['profile'] != 'Normal' ? $value['sum_card'] = $sum_card : $value['sum_card'] = '-');
+            ($value['profile'] != 'Normal' ? $value['sum_cash'] = $sum_cash : $value['sum_cash'] = '-');
+
+            $value['price_cash_percent'] = abs($value['price_cash_percent']);
+            $value['price_card_percent'] = abs($value['price_card_percent']);
+
             $value['product_id'] = $idpro;
+
             $data = $this->model->create($value);
             if ($data) {
                 if ($offer == 1) {
-                    $text_offer .= ', Oferta Parcelado:'.setReal($data->offer_card);
-                    $text_offer .= ', Á vista:'.setReal($data->offer_cash);
-                    $text_offer .= ' '.$data->offer_percent.'%';
+                    $text_offer_card = '- Oferta Parcelado:'.setReal($data->offer_card);
+                    $text_offer_cash = ', Á vista:'.round($data->offer_percent, 2).'% '.setReal($data->offer_cash);
                 }
+                if ($data->profile == 'Normal') {
+                    $price_card_percent = '';
+                    $price_cash_percent = round($data->price_cash_percent, 2);
+                } else {
+                    $price_card_percent = round($data->price_card_percent, 2);
+                    $price_cash_percent = round($data->price_cash_percent, 2);
+                } 
                 generateAccessesTxt(utf8_decode('Perfil:'.$data->profile.
-                    ', Parcelado:'.setReal($data->price_card).
-                    ', À vista:'.setReal($data->price_cash).
-                    ' '.$data->price_percent.'%'.
-                    ' '.$text_offer));
+                    ', Parcelado:'.$price_card_percent.'% '.setReal($data->price_card).
+                    ', À Vista:'.$price_cash_percent.'% '.setReal($data->price_cash).
+                    ' '.$text_offer_card . $text_offer_cash));
             }
         }
 
@@ -48,53 +65,46 @@ class ProductPriceRepository implements ProductPriceInterface
 
     public function update($input, $idpro, $offer)
     {
-        $current = $this->model->where('product_id', $idpro)->delete();
 
-        $text_offer = '';
-        $data = false;
+        $text_offer_card = '';
+        $text_offer_cash = '';
 
         foreach ($input as $key => $value) {
+            ($value['price_cash_percent'] < 0 ? $sum_cash = '-' : $sum_cash = '+');
+            ($value['price_card_percent'] < 0 ? $sum_card = '-' : $sum_card = '+');
+            
+            ($value['profile'] != 'Normal' ? $value['sum_card'] = $sum_card : $value['sum_card'] = '-');
+            ($value['profile'] != 'Normal' ? $value['sum_cash'] = $sum_cash : $value['sum_cash'] = '-');
 
-           $data = $this->model->create($value);
-            if ($data) {
+            $value['price_cash_percent'] = abs($value['price_cash_percent']);
+            $value['price_card_percent'] = abs($value['price_card_percent']);
+
+            $value['product_id'] = $idpro;
+
+            $data   = $this->model->find($value['id']);
+
+            $update = $data->update($value);
+
+            if ($update) {
                 if ($offer == 1) {
-                    $text_offer .= ', Oferta Parcelado:'.setReal($data->offer_card);
-                    $text_offer .= ', Á vista:'.setReal($data->offer_cash);
-                    $text_offer .= ' '.$data->offer_percent.'%';
+                    $text_offer_card = '- Oferta Parcelado:'.setReal($data->offer_card);
+                    $text_offer_cash = ', Á vista:'.round($data->offer_percent, 2).'% '.setReal($data->offer_cash);
                 }
+                if ($data->profile == 'Normal') {
+                    $price_card_percent = '';
+                    $price_cash_percent = round($data->price_cash_percent, 2);
+                } else {
+                    $price_card_percent = round($data->price_card_percent, 2).'% ';
+                    $price_cash_percent = round($data->price_cash_percent, 2);
+                } 
                 generateAccessesTxt(utf8_decode('Perfil:'.$data->profile.
-                    ', Parcelado:'.setReal($data->price_card).
-                    ', À vista:'.setReal($data->price_cash).
-                    ' '.$data->price_percent.'%'.
-                    ' '.$text_offer));
+                    ', Parcelado:'.$price_card_percent.setReal($data->price_card).
+                    ', À Vista:'.$price_cash_percent.'% '.setReal($data->price_cash).
+                    ' '.$text_offer_card . $text_offer_cash));
             }
         }
 
-
-        
-
-        /*
-        $text_offer = '';
-        $data = false;
-        foreach ($input as $key => $value) {
-            $data = $this->model->create($value);
-            if ($data) {
-                if ($offer == 1) {
-                    $text_offer .= ', Oferta Parcelado:'.setReal($data->offer_card);
-                    $text_offer .= ', Á vista:'.setReal($data->offer_cash);
-                    $text_offer .= ' '.$data->offer_percent.'%';
-                }
-                generateAccessesTxt(utf8_decode('Perfil:'.$data->profile.
-                    ', Parcelado:'.setReal($data->price_card).
-                    ', À vista:'.setReal($data->price_cash).
-                    ' '.$data->price_percent.'%'.
-                    ' '.$text_offer));
-            }
-        }
-
-        */
-
-        return $data;
+        return $update;
     }
 
 

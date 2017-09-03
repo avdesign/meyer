@@ -93,7 +93,7 @@ class ProductRepository implements ProductInterface
 
             $query = $this->model->where('category_id',$id)->with(array(
                 'prices' => function ($query) {
-                    $query->orderBy('profile', 'asc');
+                    $query->orderBy('id', 'asc');
                 }
             ))
             ->with(array(
@@ -194,8 +194,9 @@ class ProductRepository implements ProductInterface
 
                // Prices
                 foreach ($val->prices as $price) {
-                    $prices .= '<li><small class="tag">'.$price->profile.'</small> À Vista: '.round($price->price_percent, 2).'%<strong>&nbsp;&nbsp;'.
-                        setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>'.
+                    ($price->profile == 'Normal' ? $price_card_percent = '' : $price_card_percent = $price->sum_card.round($price->price_card_percent, 2).'%&nbsp;&nbsp;');
+                    $prices .= '<li><small class="tag">'.$price->profile.'</small> À Vista: '.$price->sum_cash.round($price->price_cash_percent, 2).'%<strong>&nbsp;&nbsp;'.
+                        setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: '.$price_card_percent.'<strong>'.
                         setReal($price->price_card).'</strong></li>';
                     
                     if ($val->offer == 1) {
@@ -203,11 +204,14 @@ class ProductRepository implements ProductInterface
                             $price->profile.'</small> Oferta à Vista: '.round($price->offer_percent, 2).'%<strong>&nbsp;&nbsp;'.
                             setReal($price->offer_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>'.
                             setReal($price->offer_card).'</strong></li>';
+                            $offer_cash = $price->offer_cash;
+                            $offer_card = $price->offer_card;
+                    } else {
+                            $offer_cash = '';
+                            $offer_card = '';
                     }
                     $price_cash = $price->price_cash;
                     $price_card = $price->price_card;
-                    $offer_cash = $price->offer_cash;
-                    $offer_card = $price->offer_card;
                 }
 
                 // Visits
@@ -219,8 +223,10 @@ class ProductRepository implements ProductInterface
                 ($offer == 1 ? $color_offer = 'icon-tick green-gradient">Ativo' : $color_offer = 'grey-gradient">Inativo');
                 $clickOffer = "statusFields('offer','{$val->id}','".route('product.status', $val->id)."','{$offer}','".csrf_token()."')";
                 $offers  = '<p id="offer-'.$val->id.'"><button type="button" onclick="'.$clickOffer.'" class="button compact '.$color_offer.'</button></p>';
-                $offers .= '<p>À vista: '.setReal($offer_cash).'</p>';
-                $offers .= '<p>À prazo: '.setReal($offer_card).'</p>';
+                if($offer == 1) {
+                    $offers .= '<p>À vista: '.setReal($offer_cash).'</p>';
+                    $offers .= '<p>À prazo: '.setReal($offer_card).'</p>';
+                }    
                 // Active
                 $status = $val->active;
                 ($status == 1 ? $color_status = 'icon-tick green-gradient">Ativo' : $color_status = 'grey-gradient">Inativo');

@@ -315,7 +315,7 @@ class ConfigModulesTableSeeder extends Seeder
     | 14- Imagens dos produtos
     | 15- Grupo de Cores
     | 16- Vendas por Kits
-    | 17- Editar porcentagem por perfil
+    | 17- Perfil do Cliente
     | 18-29  RESERVADOS PARA CONFIGURAÇÃO
     | 30- Usuários do Sistema
     | 31- Fabricantes

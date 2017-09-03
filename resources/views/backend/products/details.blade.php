@@ -17,8 +17,13 @@
             <li>Unidade Medida: <strong>  {{$data->unit}} {{$data->measure}}</strong></li>
 
             @foreach($prices as $price)
-                <li><small class="tag">{{$price->profile}}</small> À Vista: {{round($price->price_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->price_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>{{setReal($price->price_card)}}</strong></li>
-                <li><small class="tag green-bg">{{$price->profile}}</small> Oferta à Vista: {{round($price->offer_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->offer_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>{{setReal($price->offer_card)}}</strong></li>               
+                @php
+                    ($price->profile != 'Normal' ? $price_card_percent = $price->sum_card.round($price->price_cash_percent, 2).'%' : $price_card_percent = '');
+                @endphp
+                <li><small class="tag">{{$price->profile}}</small> À Vista: {{$price->sum_cash}}{{round($price->price_cash_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->price_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: {{$price_card_percent}}<strong>&nbsp;&nbsp;{{setReal($price->price_card)}}</strong></li>
+                @if($data->offer == 1)
+                <li><small class="tag green-bg">{{$price->profile}}</small> Oferta à Vista: {{round($price->offer_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->offer_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>{{setReal($price->offer_card)}}</strong></li>
+                @endif               
             @endforeach
 
             @if($configProduct->freight == 1)

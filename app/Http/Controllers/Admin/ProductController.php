@@ -150,7 +150,6 @@ class ProductController extends Controller
         $brands        = $this->interBrand->pluck();
         $category      = $this->interCategory->setId($idcat);
         $percentage    = $this->configPercent->pluck();
-        $configPrice   = $this->configPrice->get();
         $unit_measure  = $this->configUnitMeasure->pluck();
         $configProduct = $this->configProduct->setId(1);
 
@@ -247,12 +246,12 @@ class ProductController extends Controller
         }
 
         $data          = $this->interModel->setId($id);
+        $prices        = $data->prices;
         $brands        = $this->interBrand->pluck();
         $section       = $this->interSection->setId($data->section_id);
         $sections      = $this->interSection->pluck('name', 'id');
         $categories    = $section->categories;
         $percentage    = $this->configPercent->pluck();
-        $configPrice   = $data->prices;
         $unit_measure  = $this->configUnitMeasure->pluck();
         $configProduct = $this->configProduct->setId(1);
 
@@ -263,12 +262,12 @@ class ProductController extends Controller
         return  view('backend.products.modal.forms.product', compact(
             'data',
             'kits',
+            'prices',
             'freight',
             'brands',
             'sections',
             'categories',
             'percentage',
-            'configPrice',
             'unit_measure',
             'configProduct'
         ));
@@ -292,7 +291,7 @@ class ProductController extends Controller
         $dataForm  = $request['prod'];
         $dataForm['change']   = false;
         $dataForm['refresh']  = true;
-        $dataForm['redirect'] = url("produto/{$id}/detalhes");
+        $dataForm['redirect'] = url("painel/produto/{$id}/detalhes");
 
         if ($dataForm['brand_id'] != $data->brand_id) {
             $brand  = $this->interBrand->setId($dataForm['brand_id']);

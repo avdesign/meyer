@@ -15,6 +15,7 @@ class CreateConfigProductsTable extends Migration
     {
         Schema::create('config_products', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('view_prices');
             $table->tinyInteger('price_profile');
             $table->tinyInteger('cost');
             $table->tinyInteger('stock');

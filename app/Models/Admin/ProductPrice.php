@@ -16,7 +16,8 @@ class ProductPrice extends Model
 		'offer_cash',
 		'price_cash_percent',
 		'price_card_percent',
-		'offer_cash_percent',
-		'offer_card_percent'
+		'offer_percent',
+		'sum_cash',
+		'sum_card'
 	];
 }

@@ -44,8 +44,10 @@ class ConfigProductRepository implements ConfigProductInterface
 
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Alterou a configuração dos produtos para Custo:'
-                .($data->cost == 1 ? 'Ativo' : 'Inativo').
+                ' Alterou a configuração dos produtos para Visualizar Preço:'.
+                ($data->view_prices == 1 ? 'Logado' : 'Liberado').
+                ', Preço por Perfil:'.($data->price_profile == 1 ? 'Sim' : 'Não').
+                ', Custo:'.($data->cost == 1 ? 'Ativo' : 'Inativo').
                 ', Estoque:'.($data->stock == 1 ? 'Ativo' : 'Inativo').
                 ', Grades:'.($data->grids == 1 ? 'Ativo' : 'Inativo').
                 ', Frete:'.($data->freight == 1 ? 'Ativo' : 'Inativo').

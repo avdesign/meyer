@@ -8,6 +8,7 @@ class ConfigProduct extends Model
 {
 	
 	protected $fillable = [
+		'view_prices',
 	    'price_profile',
 	    'cost',
 	    'stock',
