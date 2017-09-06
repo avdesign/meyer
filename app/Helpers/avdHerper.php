@@ -13,6 +13,7 @@ if (! function_exists('setReal')) {
 /**
  * Trocar números por letras e vice versa.
  *
+ * teste
  * @param  string $str
  */
 
