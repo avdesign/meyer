@@ -7798,6 +7798,13 @@ footer .copyright a {
   .cate-slider .slider .item .item-inner {
     border: none;
     margin: 0; }
+
+
+/************************************************************************************************
+ SECTION HOME
+ *************************************************************************************************/
+
+/* Section 1 */
   .cate-slider.cate-slider1 .page-top .catetitle {
     background-color: #bdd7df; }
   .cate-slider.cate-slider1 .page-top .catetitle:before {
@@ -7810,6 +7817,8 @@ footer .copyright a {
     content: "";
     top: 0;
     right: -13px; }
+  
+/* Section 2 */
   .cate-slider.cate-slider2 .item-cat-image {
     float: right !important; }
   .cate-slider.cate-slider2 .page-top .catetitle {
@@ -7863,6 +7872,8 @@ footer .copyright a {
     border-left: 1px solid #eaeaea;
     border-right: none;
     margin: 0; }
+
+/* Section 3 */
   .cate-slider.cate-slider3 .page-top .catetitle {
     background-color: #fa4d4f; }
   .cate-slider.cate-slider3 .page-top .catetitle:before {
@@ -7875,6 +7886,132 @@ footer .copyright a {
     content: "";
     top: 0;
     right: -13px; }
+
+/* Section 4 */
+  .cate-slider.cate-slider4 .item-cat-image {
+    float: right !important; }
+  .cate-slider.cate-slider4 .page-top .catetitle {
+    background-color: #27272c;
+    float: right;
+    text-align: right; }
+  .cate-slider.cate-slider4 .page-top .catetitle:before {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 13px solid #27272c;
+    border-bottom: 25px solid transparent;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -13px; }
+  .cate-slider.cate-slider4 .page-top .item-sub-cat {
+    width: 80%;
+    display: inline-block; }
+  .cate-slider.cate-slider4 .page-top .item-sub-cat .view-all {
+    float: right;
+    padding-right: 30px; }
+  .cate-slider.cate-slider4 .page-top .item-sub-cat ul {
+    float: left;
+    margin: 0; }
+    .cate-slider.cate-slider4 .page-top .item-sub-cat ul li {
+      float: left;
+      margin: 0; }
+    .cate-slider.cate-slider4 .page-top .item-sub-cat ul li a {
+      padding: 0 0px 0 30px;
+      color: #000;
+      font-size: 14px; }
+    .cate-slider.cate-slider4 .page-top .item-sub-cat ul li a:before {
+      background: none;
+      position: absolute;
+      content: "|";
+      color: #a6a6a6;
+      top: 0;
+      right: auto;
+      left: 10px; }
+    .cate-slider.cate-slider4 .page-top .item-sub-cat ul li a:hover {
+      font-weight: normal;
+      color: #fe5722; }
+    .cate-slider.cate-slider4 .page-top .item-sub-cat ul li:first-child a:before {
+      display: none; }
+    .cate-slider.cate-slider4 .page-top .item-sub-cat ul li:last-child a:before {
+      display: block; }
+  .cate-slider.cate-slider4 .item-cat-image {
+    float: right; }
+  .cate-slider.cate-slider4 .slider .item {
+    border-left: 1px solid #eaeaea;
+    border-right: none;
+    margin: 0; }
+
+/* Section 5 */
+  .cate-slider.cate-slider5 .page-top .catetitle {
+    background-color: #fa4d4f; }
+  .cate-slider.cate-slider5 .page-top .catetitle:before {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-left: 13px solid #fa4d4f;
+    border-bottom: 25px solid transparent;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -13px; }
+
+/* Section 6 */
+
+  .cate-slider.cate-slider6 .item-cat-image {
+    float: right !important; }
+  .cate-slider.cate-slider6 .page-top .catetitle {
+    background-color: #27272c;
+    float: right;
+    text-align: right; }
+  .cate-slider.cate-slider6 .page-top .catetitle:before {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 13px solid #27272c;
+    border-bottom: 25px solid transparent;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -13px; }
+  .cate-slider.cate-slider6 .page-top .item-sub-cat {
+    width: 80%;
+    display: inline-block; }
+  .cate-slider.cate-slider6 .page-top .item-sub-cat .view-all {
+    float: right;
+    padding-right: 30px; }
+  .cate-slider.cate-slider6 .page-top .item-sub-cat ul {
+    float: left;
+    margin: 0; }
+    .cate-slider.cate-slider6 .page-top .item-sub-cat ul li {
+      float: left;
+      margin: 0; }
+    .cate-slider.cate-slider6 .page-top .item-sub-cat ul li a {
+      padding: 0 0px 0 30px;
+      color: #000;
+      font-size: 14px; }
+    .cate-slider.cate-slider6 .page-top .item-sub-cat ul li a:before {
+      background: none;
+      position: absolute;
+      content: "|";
+      color: #a6a6a6;
+      top: 0;
+      right: auto;
+      left: 10px; }
+    .cate-slider.cate-slider6 .page-top .item-sub-cat ul li a:hover {
+      font-weight: normal;
+      color: #fe5722; }
+    .cate-slider.cate-slider6 .page-top .item-sub-cat ul li:first-child a:before {
+      display: none; }
+    .cate-slider.cate-slider6 .page-top .item-sub-cat ul li:last-child a:before {
+      display: block; }
+  .cate-slider.cate-slider6 .item-cat-image {
+    float: right; }
+  .cate-slider.cate-slider6 .slider .item {
+    border-left: 1px solid #eaeaea;
+    border-right: none;
+    margin: 0; }
+
 /************************************************************************************************
  SHORTCODE HTML SLIDER BRANDS
  *************************************************************************************************/

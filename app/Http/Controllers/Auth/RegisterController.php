@@ -1,9 +1,9 @@
 <?php
 
-namespace AVDPainel\Http\Controllers\Auth;
+namespace AVD\Http\Controllers\Auth;
 
-use AVDPainel\User;
-use AVDPainel\Http\Controllers\Controller;
+use AVD\User;
+use AVD\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -14,9 +14,9 @@ class RegisterController extends Controller
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | Este controlador controla o registro de novos usuários, bem como seus
-    | validação e criação. Por padrão, este controlador usa uma característica para
-    | Forneça esta funcionalidade sem exigir nenhum código adicional.
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
     |
     */
 
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return \AVD\User
      */
     protected function create(array $data)
     {

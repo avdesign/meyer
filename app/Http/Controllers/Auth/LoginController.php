@@ -1,9 +1,8 @@
 <?php
 
-namespace AVDPainel\Http\Controllers\Auth;
+namespace AVD\Http\Controllers\Auth;
 
-use AVDPainel\Http\Controllers\Controller;
-
+use AVD\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

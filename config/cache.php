@@ -86,6 +86,6 @@ return [
     |
     */
 
-    'prefix' => 'meyer_calcados',
+    'prefix' => 'laravel',
 
 ];

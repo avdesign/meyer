@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => AVDPainel\User::class,
+        'model' => AVD\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

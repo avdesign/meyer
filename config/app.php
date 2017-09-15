@@ -10,9 +10,10 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
+    |
     */
 
-    'name' => env('APP_NAME', 'Meyer Calçados'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://painel.dev'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -166,21 +168,15 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        AVDPainel\Providers\AppServiceProvider::class,
-        AVDPainel\Providers\AuthServiceProvider::class,
-        // AVDPainel\Providers\BroadcastServiceProvider::class,
-        AVDPainel\Providers\EventServiceProvider::class,
-        AVDPainel\Providers\RouteServiceProvider::class,
-
-        /*
-         * Image Manipulation
-         */
-        Intervention\Image\ImageServiceProvider::class,
+        AVD\Providers\Site\AppServiceProvider::class,
+        AVD\Providers\Site\AuthServiceProvider::class,
+        // AVD\Providers\Site\BroadcastServiceProvider::class,
+        AVD\Providers\Site\EventServiceProvider::class,
+        AVD\Providers\Site\RouteServiceProvider::class,
 
     ],
 
@@ -230,11 +226,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        /*
-         * Image Manipulation
-         */
-        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
